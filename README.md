@@ -75,3 +75,6 @@ converts
     ```
 2. then open http://127.0.0.1:5000 on browser
 3. the output for webcam is not rgb as of now
+
+## video output
+![rickrolled](rickrolloutput-ezgif.com-optimize.gif)
