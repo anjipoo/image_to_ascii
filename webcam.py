@@ -4,7 +4,10 @@ import time
 
 gradient = " .'`^,:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 
-width=100
+import sys
+width = 100
+if len(sys.argv) >= 2:
+    width = int(sys.argv[1])
 
 def brightness(pxl):
     b,g,r=pxl
@@ -20,7 +23,7 @@ if not cam.isOpened():
     print("cant access camera")
     exit()
 
-print("\033[2J")
+print("\033[?25l")
 
 while True:
     ret, frame=cam.read()
@@ -48,6 +51,8 @@ while True:
 
     print("\033[H"+ascii_frame, end="")
     time.sleep(0.03)
+
+print("\033[?25h")
 
 cam.release()
 print("\033[0m")

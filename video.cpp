@@ -65,8 +65,11 @@ class VideoASCII {
                 cout << "\033[0m\n";
             }
 
+            int fps = video.get(CAP_PROP_FPS);
+            if(fps <= 0)fps = 30;
+            int delay = 1000 / fps;
             this_thread::sleep_for(
-                chrono::milliseconds(30)
+                chrono::milliseconds(delay)
             );
         }
 
@@ -76,14 +79,21 @@ class VideoASCII {
 };
 
 int main(int argc, char* argv[]) {
+    if(argc < 2) {
+        cout << "Usage:\n";
+        cout << "./video movie.mp4 [width]\n";
+        return 1;
+    }
 
-    if(argc < 2) return 1;
+    int width = 120;
+
+    if(argc >= 3) width = stoi(argv[2]);
 
     cout << "\033[2J";
+    cout << "\033[?25l";
 
-    VideoASCII player(120);
-
+    VideoASCII player(width);
     player.render(argv[1]);
-
+    cout << "\033[?25h";
     return 0;
 }
