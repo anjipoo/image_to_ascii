@@ -5,3 +5,4 @@ numpy
 pillow
 gunicorn
 simple-websocket
+eventlet

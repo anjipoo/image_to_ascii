@@ -14,6 +14,9 @@ EXECUTABLE = './image.exe'
 if platform.system() != 'Windows':
     EXECUTABLE = './image'
 
+import eventlet
+eventlet.monkey_patch()
+
 app = Flask(__name__)
 socketio = SocketIO(app)
 
