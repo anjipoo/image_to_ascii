@@ -7,6 +7,12 @@ import base64
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
+import platform
+
+EXECUTABLE = './image.exe'
+
+if platform.system() != 'Windows':
+    EXECUTABLE = './image'
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -54,7 +60,7 @@ def image_ascii():
     file.save(path)
 
     result = subprocess.run(
-        ['./image', path, width, mode, 'web'],
+        [EXECUTABLE, path, width, mode, 'web'],
         capture_output=True,
         text=True,
         encoding='utf-8'

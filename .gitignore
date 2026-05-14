@@ -13,3 +13,11 @@ rickroll.exe
 rickroll.mp4
 rickroll.py
 output/
+uploads/
+output/
+*.exe
+__pycache__/
+uploads/
+output/
+*.exe
+__pycache__/
